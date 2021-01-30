@@ -10,4 +10,4 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
 done
 
 # Install commands
-ln -s ./bin "${HOME}"
+ln -s "$PWD/bin" "$HOME"
