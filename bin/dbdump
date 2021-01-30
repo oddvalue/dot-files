@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if test -z $1 ; then
+    echo "Please specify a remote"
+    exit 1
+fi
+
+if ! grep $1 ~/.ssh/config ; then
+    echo "Remote '$1' not set up"
+    exit 1
+fi
+ENV=$(ssh $1 cat project/.env)
+if test -z "$ENV" ; then
+    echo "Unable to find env file on remote"
+    exit 1
+fi
+source <(echo "$ENV")
+ssh $1 "mysqldump -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE | gzip -9" > $1.sql.gz
+gunzip $1.sql.gz
+echo "$1.sql"

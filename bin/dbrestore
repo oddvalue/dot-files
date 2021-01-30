@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+if test -f .env ; then
+    echo 'Using default DB from .env'
+else
+    echo "No env file in current directory"
+    exit 1
+fi
+source "$PWD/.env"
+
+if test -f "$1" ; then
+    echo "Using SQL dump: $1"
+else
+    echo "$1 does not exist"
+    exit 1
+fi
+
+echo "mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1"
+
+read -r -p "Run the import? [y/N] " input
+
+case $input in
+    [yY][eE][sS]|[yY])
+ mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1
+ ;;
+    [nN][oO]|[nN]|"")
+ echo "mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1" | xclip -sel clip
+ echo "Copying to clipboard and exiting..."
+ exit 1
+ ;;
+    *)
+ echo "Invalid input..."
+ exit 1
+ ;;
+esac
