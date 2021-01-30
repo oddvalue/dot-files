@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+npm audit | grep Run | cut -d ' ' -f 7 | xargs  npm install --save-dev
