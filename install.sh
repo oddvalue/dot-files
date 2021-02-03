@@ -11,3 +11,6 @@ done
 
 # Install commands
 ln -s "$PWD/bin" "$HOME"
+
+# Install command dependencies
+sudo apt install xclip
