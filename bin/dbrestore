@@ -21,6 +21,11 @@ read -r -p "Run the import? [y/N] " input
 
 case $input in
     [yY][eE][sS]|[yY])
+ if test -f vendor/bin/sail ; then
+     echo "./vendor/bin/sail exec -T laravel.test mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1"
+     ./vendor/bin/sail exec -T laravel.test mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1
+     exit 1
+ fi
  mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1
  ;;
     [nN][oO]|[nN]|"")
