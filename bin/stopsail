@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+APP_CONTAINER=$(docker ps | grep :80- | cut -d \s -f 1)
+if test -z "$APP_CONTAINER" ; then
+    echo "No docker container broadcasting on port 80 running"
+    exit 1
+fi
+
+APP_DIR=$(docker inspect ${APP_CONTAINER} | grep "\"Source\": \"${HOME}/Projects" | cut -d '"' -f4 )
+if test -z "$APP_DIR" ; then
+    echo "Can't find mount path in container data"
+    exit 1
+fi
+
+echo $APP_DIR
+cd $APP_DIR
+
+./vendor/bin/sail down

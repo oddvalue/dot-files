@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-cd $(docker inspect $(docker ps | grep :80- | cut -d \s -f 1) | grep com.docker.compose.project.working_dir | cut -d '"' -f4 )
