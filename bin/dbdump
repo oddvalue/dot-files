@@ -19,13 +19,13 @@ ssh $1 "mysqldump -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE | gzip
 gunzip $1.sql.gz
 echo "$1.sql"
 
-read -r -p "Run 'dbrestore $1.sql'? [y/N] " input
+read -r -p "Run 'dbrestore $1.sql'? [Y/n] " input
 
 case $input in
-    [yY][eE][sS]|[yY])
+    [yY][eE][sS]|[yY]|"")
  dbrestore $1.sql
  ;;
-    [nN][oO]|[nN]|"")
+    [nN][oO]|[nN])
  exit 1
  ;;
     *)
