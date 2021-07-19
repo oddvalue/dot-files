@@ -5,11 +5,16 @@ if test -z $1 ; then
     exit 1
 fi
 
+PROJECT_PATH=$2
+if test -z "$PROJECT_PATH" ; then
+    PROJECT_PATH='project'
+fi
+
 if ! grep $1 ~/.ssh/config ; then
     echo "Remote '$1' not set up"
     exit 1
 fi
-ENV=$(ssh $1 cat project/.env)
+ENV=$(ssh $1 cat $PROJECT_PATH/.env)
 if test -z "$ENV" ; then
     echo "Unable to find env file on remote"
     exit 1
