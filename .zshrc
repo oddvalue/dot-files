@@ -61,7 +61,7 @@ nvminit
 
 
 # Highlight the current autocomplete option
-zstyle ':completion:*' list-colors "${(ssh.:.)LS_COLORS}"
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # Better SSH/Rsync/SCP Autocomplete
 zstyle ':completion:*:(scp|rsync):*' tag-order ' hosts:-ipaddr:ip\ address hosts:-host:host files'
@@ -76,3 +76,15 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 
 # Initialize the autocompletion
 autoload -Uz compinit && compinit -i
+
+backward-kill-dir () {
+    local WORDCHARS=${WORDCHARS/\/}
+    zle backward-kill-word
+    zle -f kill
+}
+zle -N backward-kill-dir
+bindkey '^[^?' backward-kill-dir
+
+bindkey '^H' backward-kill-word
+bindkey '[3;5~' kill-word
+bindkey '5~' kill-word
