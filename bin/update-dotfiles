@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd $HOME/.dot-files
+cd $DOTFILES_DIR
 git pull -r
-sudo chmod 770 $HOME/.dot-files/bin/*
+sudo chmod 770 $DOTFILES_DIR/bin/*
 cd -

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-~/.dot-files/bin/stopsail
+$DOTFILES_DIR/bin/stopsail
 ./vendor/bin/sail up -d

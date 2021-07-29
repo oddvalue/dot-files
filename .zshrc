@@ -40,8 +40,6 @@ eval "$(rbenv init -)"
 
 export PATH="$HOME/.config/composer/vendor/bin:$HOME/bin:$PATH"
 
-source "$DOTFILES_DIR/autocomplete/dbdump"
-
 alias installvessel='composer require shipping-docker/vessel && php artisan vendor:publish --provider="Vessel\VesselServiceProvider" && bash vessel init'
 
 alias php70='sudo update-alternatives --set php /usr/bin/php7.0'
@@ -88,3 +86,5 @@ bindkey '^[^?' backward-kill-dir
 bindkey '^H' backward-kill-word
 bindkey '[3;5~' kill-word
 bindkey '5~' kill-word
+
+source "$DOTFILES_DIR/autocomplete/dbdump"
