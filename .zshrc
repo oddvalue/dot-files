@@ -20,7 +20,7 @@ fi
 # Customize to your needs...
 
 function nvminit {
-    if test -f ".nvmrc"; then nvm install; fi
+    if test -f ".nvmrc"; then nvm use || nvm install; fi
 }
 
 function cd {
