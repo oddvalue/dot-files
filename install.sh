@@ -17,7 +17,7 @@ sudo apt install xclip
 
 # Install zshrc file
 rm -f ~/.zshrc
-echo "DOTFILES_DIR=$PWD\nsource \"\$DOTFILES_DIR/.zshrc\"" > ~/.zshrc
+echo "export DOTFILES_DIR=$PWD\nsource \"\$DOTFILES_DIR/.zshrc\"" > ~/.zshrc
 
 # Install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash

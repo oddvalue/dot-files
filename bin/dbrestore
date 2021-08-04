@@ -1,40 +1,44 @@
 #!/usr/bin/env bash
 
-if test -f .env ; then
-    echo 'Using default DB from .env'
+if test -f .env; then
+  echo 'Using default DB from .env'
 else
-    echo "No env file in current directory"
-    exit 1
+  echo "No env file in current directory"
+  exit 1
 fi
 source "$PWD/.env"
 
-if test -f "$1" ; then
-    echo "Using SQL dump: $1"
+if test -f "$1"; then
+  echo "Using SQL dump: $1"
 else
-    echo "$1 does not exist"
-    exit 1
+  echo "$1 does not exist"
+  exit 1
 fi
 
-echo "mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1"
+if test -f vendor/bin/sail; then
+  echo "./vendor/bin/sail exec -T laravel.test mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1"
+else
+  echo "mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1"
+fi
 
 read -r -p "Run the import? [Y/n] " input
 
 case $input in
-    [yY][eE][sS]|[yY]|"")
- if test -f vendor/bin/sail ; then
-     echo "./vendor/bin/sail exec -T laravel.test mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1"
-     ./vendor/bin/sail exec -T laravel.test mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1
-     exit 1
- fi
- mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1
- ;;
-    [nN][oO]|[nN])
- echo "mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1" | xclip -sel clip
- echo "Copying to clipboard and exiting..."
- exit 1
- ;;
-    *)
- echo "Invalid input..."
- exit 1
- ;;
+[yY][eE][sS] | [yY] | "")
+  if test -f vendor/bin/sail; then
+    echo "./vendor/bin/sail exec -T laravel.test mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1"
+    ./vendor/bin/sail exec -T laravel.test mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE <$1
+    exit 1
+  fi
+  mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE <$1
+  ;;
+[nN][oO] | [nN])
+  echo "mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1" | xclip -sel clip
+  echo "Copying to clipboard and exiting..."
+  exit 1
+  ;;
+*)
+  echo "Invalid input..."
+  exit 1
+  ;;
 esac
