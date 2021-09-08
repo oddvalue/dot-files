@@ -50,7 +50,9 @@ alias php80='sudo update-alternatives --set php /usr/bin/php8.0'
 alias composer70='/usr/bin/php7.0 ~/composer70'
 alias composer74='/usr/bin/php7.4 /usr/bin/composer'
 
-alias sail='./vendor/bin/sail'
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+
+alias dep='[ -f dep ] && bash dep || bash vendor/bin/dep'
 
 nvminit
 
