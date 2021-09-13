@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
+zstyle :prezto:module:prompt theme powerlevel10k
+
 #
 # Executes commands at the start of an interactive session.
 #
@@ -53,6 +56,8 @@ alias composer74='/usr/bin/php7.4 /usr/bin/composer'
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 
 alias dep='[ -f dep ] && php dep || php vendor/bin/dep'
+
+alias sudop='sudo env PATH=$PATH'
 
 nvminit
 
