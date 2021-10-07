@@ -15,30 +15,18 @@ else
   exit 1
 fi
 
+read -r -p "Backup database before restore? [y/N] " input
+
 if test -f vendor/bin/sail; then
-  echo "./vendor/bin/sail exec -T laravel.test mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1"
-else
-  echo "mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1"
-fi
+  case $input in
+      [yY][eE][sS]|[yY])
+    dbdump
+   ;;
+  esac
 
-read -r -p "Run the import? [Y/n] " input
-
-case $input in
-[yY][eE][sS] | [yY] | "")
-  if test -f vendor/bin/sail; then
     echo "./vendor/bin/sail exec -T laravel.test mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1"
-    ./vendor/bin/sail exec -T laravel.test mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE <$1
-    exit 1
-  fi
-  mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE <$1
-  ;;
-[nN][oO] | [nN])
-  echo "mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1" | xclip -sel clip
-  echo "Copying to clipboard and exiting..."
+  ./vendor/bin/sail exec -T laravel.test mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE <$1
   exit 1
-  ;;
-*)
-  echo "Invalid input..."
-  exit 1
-  ;;
-esac
+fi
+echo "mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $1"
+mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE <$1

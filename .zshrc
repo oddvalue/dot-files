@@ -52,7 +52,7 @@ alias composer74='/usr/bin/php7.4 /usr/bin/composer'
 
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 
-alias dep='[ -f dep ] && bash dep || bash vendor/bin/dep'
+alias dep='[ -f dep ] && php dep || php vendor/bin/dep'
 
 nvminit
 

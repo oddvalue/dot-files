@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
 if test -z $1 ; then
+    if test -f ./.env ; then
+        source ./.env
+        echo "./vendor/bin/sail exec -T laravel.test mysqldump -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE > $(date +'dev-%Y-%m-%d_%H%M%S').sql"
+        ./vendor/bin/sail exec -T laravel.test mysqldump --column-statistics=0 --no-tablespaces -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE > $(date +'dev-%Y-%m-%d_%H%M%S').sql
+        exit 0
+    fi
     echo "Please specify a remote"
     exit 1
 fi
