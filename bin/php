@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if test -f "./vendor/bin/sail";
+if [ -f "./vendor/bin/sail" ] && [ -z $PHP_VERSION ] ;
   then ./vendor/bin/sail php $@;
 else
   if test -z $PHP_VERSION; then

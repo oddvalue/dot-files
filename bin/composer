@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if test -f "./vendor/bin/sail";
+if [ -f "./vendor/bin/sail" ] && [ -z $COMPOSER_PHP_VERSION ] ;
   then ./vendor/bin/sail composer $@;
 else
   if test -z $COMPOSER_PHP_VERSION; then
