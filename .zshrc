@@ -45,13 +45,20 @@ export PATH="$HOME/.config/composer/vendor/bin:$HOME/bin:$PATH"
 
 alias installvessel='composer require shipping-docker/vessel && php artisan vendor:publish --provider="Vessel\VesselServiceProvider" && bash vessel init'
 
-alias php70='sudo update-alternatives --set php /usr/bin/php7.0'
-alias php73='sudo update-alternatives --set php /usr/bin/php7.3'
-alias php74='sudo update-alternatives --set php /usr/bin/php7.4'
-alias php80='sudo update-alternatives --set php /usr/bin/php8.0'
+alias php70='PHP_VERSION=7.0 $DOTFILES_DIR/bin/php $@'
+alias php73='PHP_VERSION=7.3 $DOTFILES_DIR/bin/php $@'
+alias php74='PHP_VERSION=7.4 $DOTFILES_DIR/bin/php $@'
+alias php80='PHP_VERSION=8.0 $DOTFILES_DIR/bin/php $@'
 
-alias composer70='/usr/bin/php7.0 ~/composer70'
-alias composer74='/usr/bin/php7.4 /usr/bin/composer'
+alias php7.0="php70"
+alias php7.3="php73"
+alias php7.4="php74"
+alias php8.0="php80"
+
+alias composer70="COMPOSER_PHP_VERSION=7.0 $DOTFILES_DIR/bin/composer $@"
+alias composer73="COMPOSER_PHP_VERSION=7.3 $DOTFILES_DIR/bin/composer $@"
+alias composer74="COMPOSER_PHP_VERSION=7.4 $DOTFILES_DIR/bin/composer $@"
+alias composer80="COMPOSER_PHP_VERSION=8.0 $DOTFILES_DIR/bin/composer $@"
 
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 

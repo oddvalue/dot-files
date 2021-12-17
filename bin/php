@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if test -f "./vendor/bin/sail";
+  then ./vendor/bin/sail php $@;
+else
+  if test -z $PHP_VERSION; then
+    PHP_VERSION=8.0
+  fi
+  docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/opt \
+    -w /opt \
+    bozboz/ci:$PHP_VERSION php $@
+fi

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if test -f "./vendor/bin/sail";
+  then ./vendor/bin/sail composer $@;
+else
+  if test -z $COMPOSER_PHP_VERSION; then
+    echo PHP version?
+    read COMPOSER_PHP_VERSION
+  fi
+  docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/opt \
+    -w /opt \
+    bozboz/ci:$COMPOSER_PHP_VERSION composer $@
+fi
