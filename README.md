@@ -1,6 +1,4 @@
-# dot-files
-
-My personal dot file setup
+![dot-files](https://banners.beyondco.de/dot-files.png?theme=light&packageManager=&packageName=oddvalue%2Fdot-files&pattern=circuitBoard&style=style_1&description=My+personal+dot-file+setup&md=1&showWatermark=1&fontSize=100px&images=code&heights=auto)
 
 ## Installation
 
