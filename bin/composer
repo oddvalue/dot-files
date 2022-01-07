@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2068
 
-if [ -f "./vendor/bin/sail" ] && [ -z $COMPOSER_PHP_VERSION ] ;
+if [ -f "./vendor/bin/sail" ] && [ -z "$COMPOSER_PHP_VERSION" ] ;
   then ./vendor/bin/sail composer $@;
 else
-  if test -z $COMPOSER_PHP_VERSION; then
+  if test -z "$COMPOSER_PHP_VERSION"; then
     echo PHP version?
     read COMPOSER_PHP_VERSION
   fi
@@ -11,5 +12,6 @@ else
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/opt \
     -w /opt \
-    bozboz/ci:$COMPOSER_PHP_VERSION composer $@
+    -it \
+    bozboz/ci:"$COMPOSER_PHP_VERSION" composer $@
 fi
