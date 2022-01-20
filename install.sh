@@ -10,8 +10,7 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
 
-# Install commands
-ln -s "$PWD/bin" "$HOME"
+./symlinks.sh
 
 # Install common dependencies
 sudo apt install xclip
