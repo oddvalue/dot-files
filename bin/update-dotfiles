@@ -2,5 +2,7 @@
 
 cd $DOTFILES_DIR
 git pull -r
+git submodule update --init --recursive
 sh symlinks.sh
+sh run-updates.sh
 cd -

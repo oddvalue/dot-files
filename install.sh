@@ -1,3 +1,5 @@
+export DOTFILES_DIR="$PWD"
+
 # Install ZSH
 sudo apt update
 sudo apt install zsh
@@ -10,7 +12,7 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
 
-./symlinks.sh
+sh ./symlinks.sh
 
 # Install common dependencies
 sudo apt install xclip rbenv vim
@@ -34,3 +36,6 @@ echo "export DOTFILES_DIR=$PWD\nsource \"\$DOTFILES_DIR/.zshrc\"" > ~/.zshrc
 
 # Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+
+git submodule update --init --recursive
+sh ./run-updates.sh
