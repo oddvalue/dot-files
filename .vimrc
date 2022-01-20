@@ -75,5 +75,5 @@ map <F7> :NERDTreeToggle ~/<CR>
 
 set t_Co=256
 
-colorscheme molokai
-let g:molokia_original=1
+colorscheme nord
+"let g:molokai_original=1

@@ -43,8 +43,6 @@ eval "$(rbenv init -)"
 
 export PATH="$HOME/.config/composer/vendor/bin:$HOME/bin:$PATH"
 
-alias installvessel='composer require shipping-docker/vessel && php artisan vendor:publish --provider="Vessel\VesselServiceProvider" && bash vessel init'
-
 alias php70='PHP_VERSION=7.0 $DOTFILES_DIR/bin/php $@'
 alias php73='PHP_VERSION=7.3 $DOTFILES_DIR/bin/php $@'
 alias php74='PHP_VERSION=7.4 $DOTFILES_DIR/bin/php $@'
@@ -65,6 +63,7 @@ alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 alias dep='[ -f dep ] && php dep || php vendor/bin/dep'
 
 alias sudop='sudo env PATH=$PATH'
+alias sudovi='sudo -E vi'
 
 nvminit
 

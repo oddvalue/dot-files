@@ -13,8 +13,7 @@ done
 ./symlinks.sh
 
 # Install common dependencies
-sudo apt install xclip
-sudo apt install rbenv
+sudo apt install xclip rbenv vim
 # Docker
 sudo apt-get install \
     apt-transport-https \
