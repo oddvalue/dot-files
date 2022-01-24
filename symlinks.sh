@@ -8,3 +8,6 @@ ln -sf "$PWD/.vim" "$HOME/.vim"
 
 # Powerline10K config
 ln -sf "$PWD/.p10k.zsh" "$HOME/.p10k.zsh"
+
+# Git config
+ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"

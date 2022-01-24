@@ -1,0 +1,7 @@
+[user]
+	name = jim
+	email = jim@oddvalue.co.uk
+[init]
+	defaultBranch = main
+[core]
+	editor = vi
