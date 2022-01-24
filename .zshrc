@@ -65,6 +65,8 @@ alias dep='[ -f dep ] && php dep || php vendor/bin/dep'
 alias sudop='sudo env PATH=$PATH'
 alias sudovi='sudo -E vi'
 
+alias timelog='git log --no-decorate --author=jim --oneline --format="- %s" --since=yesterday.midnight'
+
 nvminit
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
