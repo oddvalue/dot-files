@@ -9,7 +9,7 @@ else
   docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/opt \
+    -v $HOME/.ssh:/home/php/.ssh \
     -w /opt \
-    -it \
     bozboz/ci:$PHP_VERSION php $@
 fi
