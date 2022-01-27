@@ -11,5 +11,6 @@ else
     -v $(pwd):/opt \
     -v $HOME/.ssh:/home/php/.ssh \
     -w /opt \
+    -it \
     bozboz/ci:$PHP_VERSION php $@
 fi

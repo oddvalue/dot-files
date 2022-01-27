@@ -70,7 +70,12 @@ alias dep='[ -f dep ] && php dep || php vendor/bin/dep'
 alias sudop='sudo env PATH=$PATH'
 alias sudovi='sudo -E vi'
 
-alias timelog='git log --no-decorate --author=jim --oneline --format="- %s" --since=yesterday.midnight'
+if [ -z "$GIT_NAME" ]
+then
+      GIT_NAME="$(git config --get user.name)"
+fi
+alias timelog='git log --no-decorate --author=$GIT_NAME --oneline --format="- %s" --since=midnight'
+alias yesterdaylog='git log --no-decorate --author=$GIT_NAME --oneline --format="- %s" --since=yesterday.midnight --until=midnight'
 
 nvminit
 
