@@ -1,0 +1,13 @@
+#!/bin/bash
+while true
+    do
+        export DISPLAY=:0.0
+        battery_level=`cat /sys/class/power_supply/BAT0/capacity`
+        battery_status=`cat /sys/class/power_supply/BAT0/status`
+        if [ $battery_status="Charging" ]; then
+            if [ $battery_level -ge 80 ]; then
+                notify-send -u critical "Battery at 80%, time to unplug 😎"
+            fi
+        fi
+        sleep 300
+    done
