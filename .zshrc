@@ -57,6 +57,27 @@ alias php7.4="php74"
 alias php8.0="php80"
 alias php8.1="php81"
 
+alias phpcs56='PHP_VERSION=5.6 $DOTFILES_DIR/bin/phpcs $@'
+alias phpcs70='PHP_VERSION=7.0 $DOTFILES_DIR/bin/phpcs $@'
+alias phpcs73='PHP_VERSION=7.3 $DOTFILES_DIR/bin/phpcs $@'
+alias phpcs74='PHP_VERSION=7.4 $DOTFILES_DIR/bin/phpcs $@'
+alias phpcs80='PHP_VERSION=8.0 $DOTFILES_DIR/bin/phpcs $@'
+alias phpcs81='PHP_VERSION=8.1 $DOTFILES_DIR/bin/phpcs $@'
+
+alias phpcbf56='PHP_VERSION=5.6 $DOTFILES_DIR/bin/phpcbf $@'
+alias phpcbf70='PHP_VERSION=7.0 $DOTFILES_DIR/bin/phpcbf $@'
+alias phpcbf73='PHP_VERSION=7.3 $DOTFILES_DIR/bin/phpcbf $@'
+alias phpcbf74='PHP_VERSION=7.4 $DOTFILES_DIR/bin/phpcbf $@'
+alias phpcbf80='PHP_VERSION=8.0 $DOTFILES_DIR/bin/phpcbf $@'
+alias phpcbf81='PHP_VERSION=8.1 $DOTFILES_DIR/bin/phpcbf $@'
+
+alias phpcpd56='PHP_VERSION=5.6 $DOTFILES_DIR/bin/phpcpd $@'
+alias phpcpd70='PHP_VERSION=7.0 $DOTFILES_DIR/bin/phpcpd $@'
+alias phpcpd73='PHP_VERSION=7.3 $DOTFILES_DIR/bin/phpcpd $@'
+alias phpcpd74='PHP_VERSION=7.4 $DOTFILES_DIR/bin/phpcpd $@'
+alias phpcpd80='PHP_VERSION=8.0 $DOTFILES_DIR/bin/phpcpd $@'
+alias phpcpd81='PHP_VERSION=8.1 $DOTFILES_DIR/bin/phpcpd $@'
+
 alias composer70="COMPOSER_PHP_VERSION=7.0 $DOTFILES_DIR/bin/composer $@"
 alias composer73="COMPOSER_PHP_VERSION=7.3 $DOTFILES_DIR/bin/composer $@"
 alias composer74="COMPOSER_PHP_VERSION=7.4 $DOTFILES_DIR/bin/composer $@"
