@@ -44,7 +44,7 @@ eval "$(rbenv init -)"
 export PATH="$HOME/.config/composer/vendor/bin:$HOME/bin:$PATH"
 
 source $DOTFILES_DIR/.aliases.zsh
-[[ ! -f ~/.aliases.zsh ]] || source ~/.aliases.zsh
+[[ ! -f $HOME/.aliases.zsh ]] || source $HOME/.aliases.zsh
 
 nvminit
 
