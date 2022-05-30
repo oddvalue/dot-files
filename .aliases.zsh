@@ -1,9 +1,9 @@
-alias php56='PHP_VERSION=5.6 $DOTFILES_DIR/bin/php $@'
-alias php70='PHP_VERSION=7.0 $DOTFILES_DIR/bin/php $@'
-alias php73='PHP_VERSION=7.3 $DOTFILES_DIR/bin/php $@'
-alias php74='PHP_VERSION=7.4 $DOTFILES_DIR/bin/php $@'
-alias php80='PHP_VERSION=8.0 $DOTFILES_DIR/bin/php $@'
-alias php81='PHP_VERSION=8.1 $DOTFILES_DIR/bin/php $@'
+alias php56='PHP_VERSION=5.6 $DOTFILES_DIR/bin/dphp $@'
+alias php70='PHP_VERSION=7.0 $DOTFILES_DIR/bin/dphp $@'
+alias php73='PHP_VERSION=7.3 $DOTFILES_DIR/bin/dphp $@'
+alias php74='PHP_VERSION=7.4 $DOTFILES_DIR/bin/dphp $@'
+alias php80='PHP_VERSION=8.0 $DOTFILES_DIR/bin/dphp $@'
+alias php81='PHP_VERSION=8.1 $DOTFILES_DIR/bin/dphp $@'
 
 alias php5.6="php56"
 alias php7.0="php70"
@@ -33,15 +33,15 @@ alias phpcpd74='PHP_VERSION=7.4 $DOTFILES_DIR/bin/phpcpd $@'
 alias phpcpd80='PHP_VERSION=8.0 $DOTFILES_DIR/bin/phpcpd $@'
 alias phpcpd81='PHP_VERSION=8.1 $DOTFILES_DIR/bin/phpcpd $@'
 
-alias composer70="COMPOSER_PHP_VERSION=7.0 $DOTFILES_DIR/bin/composer $@"
-alias composer73="COMPOSER_PHP_VERSION=7.3 $DOTFILES_DIR/bin/composer $@"
-alias composer74="COMPOSER_PHP_VERSION=7.4 $DOTFILES_DIR/bin/composer $@"
-alias composer80="COMPOSER_PHP_VERSION=8.0 $DOTFILES_DIR/bin/composer $@"
-alias composer81="COMPOSER_PHP_VERSION=8.1 $DOTFILES_DIR/bin/composer $@"
+alias composer70="COMPOSER_PHP_VERSION=7.0 $DOTFILES_DIR/bin/dcomposer $@"
+alias composer73="COMPOSER_PHP_VERSION=7.3 $DOTFILES_DIR/bin/dcomposer $@"
+alias composer74="COMPOSER_PHP_VERSION=7.4 $DOTFILES_DIR/bin/dcomposer $@"
+alias composer80="COMPOSER_PHP_VERSION=8.0 $DOTFILES_DIR/bin/dcomposer $@"
+alias composer81="COMPOSER_PHP_VERSION=8.1 $DOTFILES_DIR/bin/dcomposer $@"
 
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 
-alias dep='[ -f dep ] && php dep || [ -f vendor/bin/dep ] && php vendor/bin/dep || [ -f vendor/bin/deployer.phar ] && php vendor/bin/deployer.phar'
+alias dep='[ -f dep ] && dphp dep || [ -f vendor/bin/dep ] && dphp vendor/bin/dep || [ -f vendor/bin/deployer.phar ] && dphp vendor/bin/deployer.phar'
 
 alias sudop='sudo env PATH=$PATH'
 alias sudovi='sudo -E vi'
