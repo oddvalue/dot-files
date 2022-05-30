@@ -1,0 +1,19 @@
+# Alias
+alias a='php artisan'
+alias acache='php artisan cache:clear'
+alias aroutes='php artisan route:list'
+alias avendor='php artisan vendor:publish'
+
+# Laravel basic command completion
+_laravel_get_command_list () {
+  php artisan --raw --no-ansi list | sed "s/[[:space:]].*//g"
+}
+
+_laravel () {
+  if [[ -f artisan ]]; then
+    compadd $(_laravel_get_command_list)
+  fi
+}
+
+compdef _laravel artisan
+compdef _laravel la5
