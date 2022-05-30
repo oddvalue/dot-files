@@ -52,3 +52,10 @@ then
 fi
 alias timelog='git log --no-decorate --author=$GIT_NAME --oneline --format="- %s" --since=midnight'
 alias yesterdaylog='git log --no-decorate --author=$GIT_NAME --oneline --format="- %s" --since=yesterday.midnight --until=midnight'
+
+alias ds="rsync -avzh ssh --exclude '.git' --exclude 'storage' --exclude '.env' --exclude '.docker' ~/Projects/tmstores ec2-user@dev:/home/"
+alias dsd="rsync -avzh ssh --exclude '.git' --exclude 'storage' --exclude '.env' --exclude '.docker' ~/Projects/tmstores ec2-user@dev:/home/ --delete --ignore-errors"
+
+alias dockerssh="docker exec -it tmstores_web /bin/bash"
+alias a="php artisan"
+alias mcomposer="COMPOSER_MEMORY_LIMIT=-1 composer"

@@ -8,6 +8,8 @@ fi
 
 zstyle :prezto:module:prompt theme powerlevel10k
 
+ulimit -n 1024
+
 #
 # Executes commands at the start of an interactive session.
 #
@@ -82,3 +84,27 @@ bindkey '[3;5~' kill-word
 bindkey '5~' kill-word
 
 source "$DOTFILES_DIR/autocomplete/dbdump"
+source "$DOTFILES_DIR/autocomplete/laravel"
+
+gcbteam() {
+   git checkout -b $1
+   git add *
+   git commit -m "$2"
+   git push --set-upstream origin "$1"
+   gh pr create --reviewer townsendmusic/team --fill
+}
+aliasgcteam() {
+  git commit -m "$1"
+  git push -u origin HEAD
+  gh pr create --reviewer townsendmusic/team --fill
+}
+
+gitclean() {
+ git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
+}
+
+tmsync() {
+  while inotifywait -r -e modify,create,delete ./; do
+    ds
+  done
+}
