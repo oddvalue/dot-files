@@ -105,6 +105,6 @@ gitclean() {
 
 tmsync() {
   while inotifywait -r -e modify,create,delete ./; do
-    ds
+    dsd
   done
 }
