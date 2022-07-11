@@ -1,5 +1,5 @@
+#!/usr/bin/env bash
 # Alias
-alias a='php artisan'
 alias acache='php artisan cache:clear'
 alias aroutes='php artisan route:list'
 alias avendor='php artisan vendor:publish'

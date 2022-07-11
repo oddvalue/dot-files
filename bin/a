@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ -f sail ] ; then
+  bash sail artisan $@
+else
+  if [ -f ./vendor/bin/sail ] ; then
+    bash ./vendor/bin/sail artisan $@
+  else
+    php artisan $@
+  fi
+fi
