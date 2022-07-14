@@ -33,3 +33,7 @@ tmsync() {
 deva() {
   ssh dev "cd /home/tmstores && php artisan $@"
 }
+
+ondev() {
+  ssh dev "cd /home/tmstores && $@"
+}

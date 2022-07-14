@@ -54,7 +54,7 @@ alias timelog='git log --no-decorate --author=$GIT_NAME --oneline --format="- %s
 alias yesterdaylog='git log --no-decorate --author=$GIT_NAME --oneline --format="- %s" --since=yesterday.midnight --until=midnight'
 
 alias ds="rsync -avzh --exclude '.git' --exclude 'storage' --exclude '.env' --exclude '.idea' --exclude '.docker' --exclude 'bootstrap/cache/livewire-components.php' ~/Projects/tmstores ec2-user@dev:/home/"
-alias dsd="rsync -avzh --exclude '.git' --exclude 'storage' --exclude '.env' --exclude '.idea' --exclude '.docker' --exclude 'bootstrap/cache/livewire-components.php' ~/Projects/tmstores ec2-user@dev:/home/ --delete --ignore-errors"
+alias dsd="ds --delete --ignore-errors"
 
 alias dockerssh="docker exec -it tmstores_web /bin/bash"
 
