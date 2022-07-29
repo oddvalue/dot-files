@@ -64,6 +64,6 @@ alias tm="cd ~/Projects/tmstores"
 
 alias nordd="nordlayer disconnect"
 
-alias da="docker exec -it -u apache tmstores_web php artisan"
+alias da="docker exec -it -u $(id -u) tmstores_web php artisan"
 
 alias pint="./vendor/bin/pint"
