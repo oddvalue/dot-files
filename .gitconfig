@@ -5,3 +5,5 @@
 	defaultBranch = main
 [core]
 	editor = vi
+[commit]
+	gpgsign = false

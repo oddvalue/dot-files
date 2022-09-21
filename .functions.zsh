@@ -26,7 +26,13 @@ gitclean() {
 
 tmsync() {
   while inotifywait -r -e modify,create,delete ./; do
-    dsd
+    dsd && ssh dev "cd /home/tmstores && sudo chown ec2-user:apache bootstrap/cache && sudo chmod 775 bootstrap/cache"
+  done
+}
+
+tmsynct() {
+  while inotifywait -r -e modify,create,delete ./; do
+    dstd && ssh dev "cd /home/tmstores && sudo chown ec2-user:apache bootstrap/cache && sudo chmod 775 bootstrap/cache"
   done
 }
 
