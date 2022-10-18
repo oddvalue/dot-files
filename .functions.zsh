@@ -43,3 +43,7 @@ deva() {
 ondev() {
   ssh dev "cd /home/tmstores && $@"
 }
+
+fixcache() {
+  ssh dev "cd /home/tmstores && sudo chown -R ec2-user:apache ./storage && sudo chmod -R 775 ./storage"
+}
