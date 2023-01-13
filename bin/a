@@ -2,10 +2,12 @@
 
 if [ -f sail ] ; then
   bash sail artisan $@
+elif [ -f tm ] ; then
+  bash tm artisan $@
+elif [ -f ./vendor/bin/sail ] ; then
+  bash ./vendor/bin/sail artisan $@
+elif [ -f ./.env.artisan ] ; then
+  php artisan --env artisan $@
 else
-  if [ -f ./vendor/bin/sail ] ; then
-    bash ./vendor/bin/sail artisan $@
-  else
-    php artisan $@
-  fi
+  php artisan $@
 fi

@@ -63,7 +63,7 @@ alias dockerssh="docker exec -it tmstores_web /bin/bash"
 
 alias mcomposer="COMPOSER_MEMORY_LIMIT=-1 composer"
 
-alias tm="cd ~/Projects/tmstores"
+alias tm="[ -f tm ] && bash ./tm"
 
 alias nordd="nordlayer disconnect"
 
