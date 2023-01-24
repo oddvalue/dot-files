@@ -1,13 +1,98 @@
 #!/bin/bash
-if test -f $HOME/.env ; then
-  . $HOME/.env
 
-  battery_state=$(upower -i $(upower -e | grep BAT) | grep -E "state" | awk '{print $2}')
-  battery_percentage=$(upower -i $(upower -e | grep BAT) | grep -E "percentage" | awk '{print $2}' | tr -d '%')
+if ! test -f $HOME/.env ; then
+  echo 'ENV file missing'
+  exit 1
+fi
 
-  if [ "$battery_state" == "discharging" ] && [ $battery_percentage -lt 75 ]; then
-      curl -XPOST -d '{"value":"on"}' -H "Content-Type: application/json" $BATTERY_PROTECT_WEBHOOK
-  elif [ "$battery_state" == "charging" ] && [ $battery_percentage -gt 80 ]; then
-      curl -XPOST -d '{"value":"off"}' -H "Content-Type: application/json" $BATTERY_PROTECT_WEBHOOK
+TEST=false
+DEBUG=false
+FORCE=false
+VERBOSE=false
+
+while [[ $# -gt 0 ]]
+do
+  key="$1"
+  case $key in
+    -t|--test)
+      TEST=true
+      ;;
+    -e|--enable)
+      sed -i 's/BATTERY_PROTECT_ENABLED=.*/BATTERY_PROTECT_ENABLED=true/' $HOME/.env
+      echo 'Enabled'
+      exit 0
+      ;;
+    -d|--disable)
+      sed -i 's/BATTERY_PROTECT_ENABLED=.*/BATTERY_PROTECT_ENABLED=false/' $HOME/.env
+      echo 'Disabled'
+      exit 0
+      ;;
+    -f|--force)
+      FORCE=true
+      ;;
+    -v|--verbose)
+      VERBOSE=true
+      ;;
+    -h|--help)
+      echo "Usage: battery-protect {OPTIONS}"
+      echo ""
+      echo " -t, --test     Run the script continuously every 10 seconds"
+      echo " -e, --enable   Enable the service"
+      echo " -d, --disable  Disable the service"
+      echo " -f, --force    Run the script, even if it's disabled"
+      echo " -v, --verbose  Print debug"
+      echo " -h, --help     Displays this help message"
+      exit 0
+      ;;
+  esac
+  shift
+done
+
+if $TEST; then
+  while true; do
+    . $HOME/bin/battery-protect -f -v
+    sleep 10
+  done
+fi
+
+. $HOME/.env
+
+ssid=$(iwgetid -r)
+
+if [ "$ssid" != "$BATTERY_PROTECT_SSID" ]; then
+    if $VERBOSE; then
+    echo 'Disabled'
   fi
+  exit 1
+fi
+
+if ! $BATTERY_PROTECT_ENABLED && ! $FORCE ; then
+  if $VERBOSE; then
+    echo 'Disabled'
+  fi
+  exit 1
+fi
+
+battery_state=$(upower -i $(upower -e | grep BAT) | grep -E "state" | awk '{print $2}')
+battery_percentage=$(upower -i $(upower -e | grep BAT) | grep -E "percentage" | awk '{print $2}' | tr -d '%')
+
+if $VERBOSE; then
+  echo "$(date | awk '{print $2 " " $3 " " $4}') - $battery_state @ $battery_percentage%"
+fi
+
+if [ "$battery_state" == "discharging" ] && [ $battery_percentage -lt 73 ]; then
+  if $VERBOSE; then
+    echo 'start charging'
+  fi
+  curl -XPOST -d '{"value":"on"}' -H "Content-Type: application/json" $BATTERY_PROTECT_WEBHOOK
+elif [ "$battery_state" == "charging" ] && [ $battery_percentage -gt 78 ]; then
+  if $VERBOSE; then
+    echo 'stop charging'
+  fi
+  curl -XPOST -d '{"value":"off"}' -H "Content-Type: application/json" $BATTERY_PROTECT_WEBHOOK
+elif [ "$battery_state" == "fully-charged" ]; then
+  if $VERBOSE; then
+    echo 'stop charging'
+  fi
+  curl -XPOST -d '{"value":"off"}' -H "Content-Type: application/json" $BATTERY_PROTECT_WEBHOOK
 fi
