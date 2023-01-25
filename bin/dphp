@@ -12,5 +12,5 @@ else
     -v $HOME/.ssh:/home/php/.ssh \
     -w /opt \
     -it \
-    bozboz/ci:$PHP_VERSION php $@
+    laravelsail/php$PHP_VERSION-composer:latest php $@
 fi

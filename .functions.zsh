@@ -47,3 +47,13 @@ ondev() {
 fixcache() {
   ssh dev "cd /home/tmstores && sudo chown -R ec2-user:apache ./storage && sudo chmod -R 775 ./storage"
 }
+
+tm() {
+  if test -f "tm"; then
+    bash ./tm $@;
+  elif [ $# -eq 0 ]; then
+    cd ~/Projects/tmstores || exit
+  else
+    echo 'tm not found'
+  fi
+}
