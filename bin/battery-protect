@@ -27,7 +27,7 @@ do
       echo 'Disabled'
       exit 0
       ;;
-    -t|--temp=disable)
+    -T|--temp=disable)
       sed -i 's/BATTERY_PROTECT_TEMP_DISABLE=.*/BATTERY_PROTECT_TEMP_DISABLE=true/' $HOME/.env
       sed -i 's/BATTERY_PROTECT_ENABLED=.*/BATTERY_PROTECT_ENABLED=false/' $HOME/.env
       echo 'Disabled until next full charge'
@@ -45,7 +45,7 @@ do
       echo " -t, --test     Run the script continuously every 10 seconds"
       echo " -e, --enable   Enable the service"
       echo " -d, --disable  Disable the service"
-      echo " -t, --temp-disable  Disable the service until next full charge"
+      echo " -T, --temp-disable  Disable the service until next full charge"
       echo " -f, --force    Run the script, even if it's disabled"
       echo " -v, --verbose  Print debug"
       echo " -h, --help     Displays this help message"
