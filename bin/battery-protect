@@ -84,7 +84,11 @@ fi
 
 if ! $BATTERY_PROTECT_ENABLED && ! $FORCE ; then
   if $VERBOSE; then
-    echo 'Disabled'
+    if $BATTERY_PROTECT_TEMP_DISABLE; then
+      echo 'Disabled until next full charge'
+    else
+      echo 'Disabled'
+    fi
   fi
   exit 1
 fi
