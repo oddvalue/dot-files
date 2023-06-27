@@ -25,10 +25,11 @@ alias phpcpd74='PHP_VERSION=7.4 $DOTFILES_DIR/bin/dphpcpd $@'
 alias phpcpd80='PHP_VERSION=8.0 $DOTFILES_DIR/bin/dphpcpd $@'
 alias phpcpd81='PHP_VERSION=8.1 $DOTFILES_DIR/bin/dphpcpd $@'
 
-alias composer73="COMPOSER_PHP_VERSION=7.3 $DOTFILES_DIR/bin/dcomposer $@"
-alias composer74="COMPOSER_PHP_VERSION=7.4 $DOTFILES_DIR/bin/dcomposer $@"
-alias composer80="COMPOSER_PHP_VERSION=8.0 $DOTFILES_DIR/bin/dcomposer $@"
-alias composer81="COMPOSER_PHP_VERSION=8.1 $DOTFILES_DIR/bin/dcomposer $@"
+alias composer73="COMPOSER_PHP_VERSION=73 $DOTFILES_DIR/bin/dcomposer $@"
+alias composer74="COMPOSER_PHP_VERSION=74 $DOTFILES_DIR/bin/dcomposer $@"
+alias composer80="COMPOSER_PHP_VERSION=80 $DOTFILES_DIR/bin/dcomposer $@"
+alias composer81="COMPOSER_PHP_VERSION=81 $DOTFILES_DIR/bin/dcomposer $@"
+alias composer82="COMPOSER_PHP_VERSION=82 $DOTFILES_DIR/bin/dcomposer $@"
 
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 

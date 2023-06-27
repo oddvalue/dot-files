@@ -13,5 +13,5 @@ else
     -v $(pwd):/opt \
     -w /opt \
     -it \
-    bozboz/ci:"$COMPOSER_PHP_VERSION" composer $@
+    laravelsail/php$COMPOSER_PHP_VERSION-composer:latest composer $@
 fi

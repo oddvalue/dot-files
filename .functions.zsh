@@ -57,3 +57,10 @@ tm() {
     echo 'tm not found'
   fi
 }
+
+_repeat() {
+  for i in $(seq 1 $1); do
+    ${@:2}
+  done
+}
+alias repeat='_repeat'

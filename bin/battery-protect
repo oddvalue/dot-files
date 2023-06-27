@@ -27,6 +27,12 @@ do
       echo 'Disabled'
       exit 0
       ;;
+    -t|--temp=disable)
+      sed -i 's/BATTERY_PROTECT_TEMP_DISABLE=.*/BATTERY_PROTECT_TEMP_DISABLE=true/' $HOME/.env
+      sed -i 's/BATTERY_PROTECT_ENABLED=.*/BATTERY_PROTECT_ENABLED=false/' $HOME/.env
+      echo 'Disabled until next full charge'
+      exit 0
+      ;;
     -f|--force)
       FORCE=true
       ;;
@@ -39,6 +45,7 @@ do
       echo " -t, --test     Run the script continuously every 10 seconds"
       echo " -e, --enable   Enable the service"
       echo " -d, --disable  Disable the service"
+      echo " -t, --temp-disable  Disable the service until next full charge"
       echo " -f, --force    Run the script, even if it's disabled"
       echo " -v, --verbose  Print debug"
       echo " -h, --help     Displays this help message"
@@ -66,15 +73,21 @@ if [ "$ssid" != "$BATTERY_PROTECT_SSID" ]; then
   exit 1
 fi
 
+battery_state=$(upower -i $(upower -e | grep BAT) | grep -E "state" | awk '{print $2}')
+battery_percentage=$(upower -i $(upower -e | grep BAT) | grep -E "percentage" | awk '{print $2}' | tr -d '%')
+
+if $BATTERY_PROTECT_TEMP_DISABLE && [ "$battery_state" == "fully-charged" ]; then
+  sed -i 's/BATTERY_PROTECT_TEMP_DISABLE=.*/BATTERY_PROTECT_TEMP_DISABLE=false/' $HOME/.env
+  sed -i 's/BATTERY_PROTECT_ENABLED=.*/BATTERY_PROTECT_ENABLED=true/' $HOME/.env
+  BATTERY_PROTECT_ENABLED=true
+fi
+
 if ! $BATTERY_PROTECT_ENABLED && ! $FORCE ; then
   if $VERBOSE; then
     echo 'Disabled'
   fi
   exit 1
 fi
-
-battery_state=$(upower -i $(upower -e | grep BAT) | grep -E "state" | awk '{print $2}')
-battery_percentage=$(upower -i $(upower -e | grep BAT) | grep -E "percentage" | awk '{print $2}' | tr -d '%')
 
 if $VERBOSE; then
   echo "$(date | awk '{print $2 " " $3 " " $4}') - $battery_state @ $battery_percentage%"
