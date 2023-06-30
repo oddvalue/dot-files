@@ -60,7 +60,20 @@ tm() {
 
 _repeat() {
   for i in $(seq 1 $1); do
+    echo "#${i}"
     ${@:2}
   done
 }
 alias repeat='_repeat'
+
+_repeatTillFail() {
+  for i in $(seq 1 $1); do
+    echo "Attempt #${i}"
+    ${@:2}
+
+    if [ $? -ne 0 ]; then
+        break 1
+    fi
+  done
+}
+alias repeat-till-fail='_repeatTillFail'
