@@ -67,9 +67,9 @@ _repeat() {
 alias repeat='_repeat'
 
 _repeatTillFail() {
-  for i in $(seq 1 $1); do
+  for i in $(seq 1 1000); do
     echo "Attempt #${i}"
-    ${@:2}
+    ${@:1}
 
     if [ $? -ne 0 ]; then
         break 1

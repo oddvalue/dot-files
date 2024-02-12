@@ -68,7 +68,7 @@ ssid=$(iwgetid -r)
 
 if [ "$ssid" != "$BATTERY_PROTECT_SSID" ]; then
     if $VERBOSE; then
-    echo 'Disabled'
+    echo 'Not on home network'
   fi
   exit 1
 fi

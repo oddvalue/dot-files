@@ -80,3 +80,4 @@ bindkey '5~' kill-word
 
 source "$DOTFILES_DIR/autocomplete/dbdump"
 source "$DOTFILES_DIR/autocomplete/laravel"
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

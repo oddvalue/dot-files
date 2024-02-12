@@ -37,5 +37,8 @@ echo "export DOTFILES_DIR=$PWD\nsource \"\$DOTFILES_DIR/.zshrc\"" > ~/.zshrc
 # Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 
+# Install autosuggestions
+ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+
 git submodule update --init --recursive
 sh ./run-updates.sh
