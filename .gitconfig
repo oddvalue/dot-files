@@ -25,4 +25,6 @@
     hunk-header-file-style = red
     hunk-header-line-number-style = "#067a00"
     hunk-header-style = file line-number syntax
-
+[alias]
+    forget="!git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D"
+    forgetlist="!git fetch -p && git branch -vv | awk '/: gone]/{print $1}'"

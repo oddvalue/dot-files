@@ -22,7 +22,8 @@ sudo apt-get install \
     ca-certificates \
     curl \
     gnupg \
-    lsb-release
+    lsb-release \
+    fzf
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo \
   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
@@ -39,6 +40,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 
 # Install autosuggestions
  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+
+ # Install fzf-tab
+ git clone https://github.com/Aloxaf/fzf-tab ~/.local/fzf-tab
 
 git submodule update --init --recursive
 sh ./run-updates.sh
