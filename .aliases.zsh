@@ -63,3 +63,9 @@ alias pint="./vendor/bin/pint"
 alias phpstan="./vendor/bin/phpstan"
 
 alias wtf="which"
+
+alias light="gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'"
+alias dark="gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+
+alias warp="warp-cli connect"
+alias warpd="warp-cli disconnect"

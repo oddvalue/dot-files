@@ -78,8 +78,11 @@ bindkey '^H' backward-kill-word
 bindkey '[3;5~' kill-word
 bindkey '5~' kill-word
 
-source "$DOTFILES_DIR/autocomplete/dbdump"
-source "$DOTFILES_DIR/autocomplete/laravel"
+for FILE in $DOTFILES_DIR/autocomplete/*; do
+  source $FILE
+done
+unset FILE
+
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
